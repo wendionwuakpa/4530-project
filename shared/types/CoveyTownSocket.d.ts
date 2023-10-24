@@ -120,17 +120,19 @@ export interface TicTacToeGameState extends WinnableGameState {
 }
 
 export interface WordleGameState extends WinnableGameState {
-  goalWords: ReadonlyArray<String>,
-  score: ReadonlyArray<boolean>,
+  goalWords: Array<String>,
+  score: number,
+  player?: PlayerID,
+  index: number,
   difficulty: Difficulty,
   numGuesses: number,
-  guesses: ReadonlyArray<WorldleGuess>;
+  guesses: ReadonlyArray<WordleGuess>;
 }
 
 export type Difficulty = 5 | 6 | 7
 
-export interface WorldleGuess {
-  guess: ReadonlyArray<String>
+export interface WordleGuess {
+  guess: String[]
 }
 
 
