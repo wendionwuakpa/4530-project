@@ -17,7 +17,7 @@ export type TownJoinResponse = {
   interactables: TypedInteractable[];
 }
 
-export type InteractableType = 'ConversationArea' | 'ViewingArea' | 'TicTacToeArea';
+export type InteractableType = 'ConversationArea' | 'ViewingArea' | 'TicTacToeArea' | 'WordleArea';
 export interface Interactable {
   type: InteractableType;
   id: InteractableID;
@@ -117,6 +117,28 @@ export interface TicTacToeGameState extends WinnableGameState {
   moves: ReadonlyArray<TicTacToeMove>;
   x?: PlayerID;
   o?: PlayerID;
+}
+
+export interface WordleGameState extends WinnableGameState {
+  goalWords: Array<String>,
+  score: number,
+  player?: PlayerID,
+  index: number,
+  difficulty: Difficulty,
+  numGuesses: number,
+  guesses: ReadonlyArray<WordleGuess>;
+}
+
+export type Difficulty = 5 | 6 | 7
+
+export interface WordleGuess {
+  guess: String[]
+}
+
+
+
+export interface WordleMove {
+
 }
 
 export type InteractableID = string;
