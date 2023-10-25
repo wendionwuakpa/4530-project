@@ -72,7 +72,7 @@ export default class WorldleGame extends Game<WordleGameState, WordleGuess> {
         }
         if (!this.state.player) {
             this.state.player = player.id
-            this.state.status = 'IN_PROGRESS';
+            //this.state.status = 'IN_PROGRESS';
         } else {
             throw new InvalidParametersError(GAME_FULL_MESSAGE);
         }
@@ -80,7 +80,19 @@ export default class WorldleGame extends Game<WordleGameState, WordleGuess> {
     protected _leave(player: Player): void {
         if (this.state.player !== player.id) {
             throw new InvalidParametersError(PLAYER_NOT_IN_GAME_MESSAGE);
-          }
+        } else {
+            this.state = {
+               ...this.state,
+                guesses: [],
+                numGuesses: 0,
+                status: 'WAITING_TO_START',
+                winner: undefined,
+                index: 0,
+                score: 0,
+                difficulty: 5,
+                goalWords: []
+            }
+        }
     }
     
 }
